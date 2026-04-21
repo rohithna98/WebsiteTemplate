@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="css/style.css"> <!-- Link to shared CSS -->
 </head>
 <body>
-    <nav>
+    <!--<nav>
         <a href="index.html">Home</a> | <a href="orders.html">Order History</a>
     </nav>
     <h1>Your Shopping Cart</h1>
@@ -20,7 +20,20 @@
             <td>$20.00</td>
             <td><input type="number" value="1"></td>
         </tr>
-    </table>
+    </table>-->
+    <div id="cart-items"></div>
+<button onclick="checkout()">Checkout Now</button>
+
+<script src="script.js"></script>
+<script>
+    const displayCart = () => {
+        const container = document.getElementById('cart-items');
+        const currentCart = JSON.parse(localStorage.getItem('cart')) || [];
+        container.innerHTML = currentCart.map(item => `<p>${item.name} - $${item.price}</p>`).join('');
+    };
+    displayCart();
+</script>
+
     <button class="checkout-btn">Proceed to Checkout</button>
 </body>
 </html>

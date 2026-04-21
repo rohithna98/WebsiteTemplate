@@ -9,10 +9,27 @@
         <a href="index.html">Home</a> | <a href="cart.html">Cart</a>
     </nav>
     <h1>Order History</h1>
-    <div class="order-card">
+    <!--<div class="order-card">
         <p><strong>Order #12345</strong> - Delivered Jan 15, 2024</p>
         <p>Total: $45.00</p>
         <a href="#">View Details</a>
-    </div>
+    </div>-->
+    <div id="order-history"></div>
+
+<script src="script.js"></script>
+<script>
+    const displayOrders = () => {
+        const container = document.getElementById('order-history');
+        const history = JSON.parse(localStorage.getItem('orders')) || [];
+        container.innerHTML = history.map(order => `
+            <div class="order-card">
+                <h3>Order ${order.id}</h3>
+                <p>Date: ${order.date} | Total: $${order.total}</p>
+            </div>
+        `).join('');
+    };
+    displayOrders();
+</script>
+
 </body>
 </html>
