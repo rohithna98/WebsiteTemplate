@@ -3,6 +3,7 @@
 <head>
     <title>Order History</title>
     <link rel="stylesheet" href="css/style.css">
+    <script src="script.js"></script>
 </head>
 <body>
     <nav>
@@ -16,8 +17,8 @@
     </div>-->
     <div id="order-history"></div>
 
-<script src="script.js"></script>
-<script>
+    <script src="script.js"></script>
+    <script>
     const displayOrders = () => {
         const container = document.getElementById('order-history');
         const history = JSON.parse(localStorage.getItem('orders')) || [];

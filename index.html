@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SolarVillage</title>
+    <!-- Inside <head> -->
+        <script src="script.js" defer></script>
     <!-- Link to your CSS folder -->
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -15,7 +17,8 @@
         <ul class="nav-links">
             <li><a href="index.html">Home</a></li>
             <li><a href="orders.html">My Orders</a></li>
-            <li><a href="cart.html" class="cart-link">Cart (0)</a></li>
+            <!-- In Nav -->
+        <li><a href="cart.html">Cart (<span id="cart-count">0</span>)</a></li>
         </ul>
     </nav>
 
@@ -35,7 +38,8 @@
                 <div class="product-image-placeholder"></div>
                 <h3>1KW Panel</h3>
                 <p class="price">₹ 20000</p>
-                <button class="add-btn">Add to Cart</button>
+                <!-- In Product Card -->
+                <button class="add-btn" onclick="addToCart('Blue T-Shirt', 20)">Add to Cart</button>
             </div>
 
             <!-- Product 2 -->
@@ -43,7 +47,7 @@
                 <div class="product-image-placeholder"></div>
                 <h3>2KW</h3>
                 <p class="price">₹ 35000</p>
-                <button class="add-btn">Add to Cart</button>
+                <button class="add-btn" onclick="addToCart('Blue T-Shirt', 20)">Add to Cart</button>
             </div>
 
             <!-- Product 3 -->
@@ -51,19 +55,15 @@
                 <div class="product-image-placeholder"></div>
                 <h3>Battery 50Amp</h3>
                 <p class="price">₹45000</p>
-                <button class="add-btn">Add to Cart</button>
+                <button class="add-btn" onclick="addToCart('Blue T-Shirt', 20)">Add to Cart</button>
             </div>
 
         </div>
 
-        <!-- Inside <head> -->
-<script src="script.js" defer></script>
+        
 
-<!-- In Nav -->
-<li><a href="cart.html">Cart (<span id="cart-count">0</span>)</a></li>
 
-<!-- In Product Card -->
-<button class="add-btn" onclick="addToCart('Blue T-Shirt', 20)">Add to Cart</button>
+        
 
     </main>
 
