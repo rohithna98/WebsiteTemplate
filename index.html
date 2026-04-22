@@ -1,75 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SolarVillage</title>
-    <!-- Inside <head> -->
-        <script src="script.js" defer></script>
-    <!-- Link to your CSS folder -->
+    <title>ShopLocal - Home</title>
     <link rel="stylesheet" href="css/style.css">
+    <script src="script.js" defer></script>
+    <link rel="authentication" href="auth.html">
+    <link rel="account" href="account.html">
 </head>
 <body>
-
-    <!-- Navigation Bar -->
     <nav class="navbar">
-        <div class="logo"><h1>SolarVillage</h1></div>
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="orders.html">My Orders</a></li>
-            <!-- In Nav -->
+    <div class="logo">ShopLocal</div>
+    <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="orders.html">Orders</a></li>
+        <li>
+            <!-- Account link with a person icon -->
+            <a href="account.html" class="account-link">
+                <span class="user-icon">👤</span> Account
+            </a>
+        </li>
         <li><a href="cart.html">Cart (<span id="cart-count">0</span>)</a></li>
-        </ul>
-    </nav>
+    </ul>
+</nav>
 
-    <!-- Hero Section -->
-    <header class="hero">
-        <h1>Checkout the solar panels at the best price </h1>
-        <p>Great quality products delivered to your door.</p>
-    </header>
-
-    <!-- Product Grid -->
     <main class="container">
-        <h2>Featured Products</h2>
+        <h1>Featured Products</h1>
         <div class="product-grid">
-            
-            <!-- Product 1 -->
             <div class="product-card">
-                <div class="product-image-placeholder"></div>
-                <h3>1KW Panel</h3>
-                <p class="price">₹ 20000</p>
-                <!-- In Product Card -->
+                <img src="images/panel1.jpeg" alt="Blue T-Shirt" class="product-img">
+                <h3>1kw panel</h3>
+                <p>₹10000</p>
                 <button class="add-btn" onclick="addToCart('Blue T-Shirt', 20)">Add to Cart</button>
             </div>
-
-            <!-- Product 2 -->
             <div class="product-card">
-                <div class="product-image-placeholder"></div>
-                <h3>2KW</h3>
-                <p class="price">₹ 35000</p>
-                <button class="add-btn" onclick="addToCart('Blue T-Shirt', 20)">Add to Cart</button>
+                <img src="images/panel2.jpeg" alt="Blue T-Shirt" class="product-img">
+                <h3>2kw panel>
+                <p>₹20000</p>
+                <button class="add-btn" onclick="addToCart('Sneakers', 50)">Add to Cart</button>
             </div>
-
-            <!-- Product 3 -->
-            <div class="product-card">
-                <div class="product-image-placeholder"></div>
-                <h3>Battery 50Amp</h3>
-                <p class="price">₹45000</p>
-                <button class="add-btn" onclick="addToCart('Blue T-Shirt', 20)">Add to Cart</button>
-            </div>
-
         </div>
-
-        
-
-
-        
-
     </main>
-
-    <footer>
-        <p>&copy; 2026 SolarVillage. Built for learning.</p>
-    </footer>
-
 </body>
 </html>

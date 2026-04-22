@@ -1,36 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <title>Order History</title>
     <link rel="stylesheet" href="css/style.css">
-    <script src="script.js"></script>
 </head>
 <body>
-    <nav>
-        <a href="index.html">Home</a> | <a href="cart.html">Cart</a>
+    <nav class="navbar">
+        <div class="logo">ShopLocal</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="orders.html">Orders</a></li>
+            <li><a href="cart.html">Cart</a></li>
+        </ul>
     </nav>
-    <h1>Order History</h1>
-    <!--<div class="order-card">
-        <p><strong>Order #12345</strong> - Delivered Jan 15, 2024</p>
-        <p>Total: $45.00</p>
-        <a href="#">View Details</a>
-    </div>-->
-    <div id="order-history"></div>
-
-    <script src="script.js"></script>
+    <main class="container">
+        <h1>Order History</h1>
+        <div id="history-container"></div>
+    </main>
     <script>
-    const displayOrders = () => {
-        const container = document.getElementById('order-history');
-        const history = JSON.parse(localStorage.getItem('orders')) || [];
-        container.innerHTML = history.map(order => `
-            <div class="order-card">
-                <h3>Order ${order.id}</h3>
-                <p>Date: ${order.date} | Total: $${order.total}</p>
+        const orders = JSON.parse(localStorage.getItem('orders')) || [];
+        document.getElementById('history-container').innerHTML = orders.map(o => `
+            <div style="background:white; padding:15px; margin-bottom:10px; border-radius:8px;">
+                <p><strong>Order:</strong> ${o.id} | <strong>Date:</strong> ${o.date}</p>
+                <p><strong>Total:</strong> $${o.total}</p>
             </div>
-        `).join('');
-    };
-    displayOrders();
-</script>
-
+        `).join('') || "<p>No orders found.</p>";
+    </script>
 </body>
 </html>

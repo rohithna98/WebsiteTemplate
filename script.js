@@ -1,42 +1,62 @@
-// Initialize cart and orders from LocalStorage or empty arrays if first time
+// Load data from LocalStorage
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
-let orders = JSON.parse(localStorage.getItem('orders')) || [];
 
-// 1. Function to Add to Cart
+function updateCartCount() {
+    const countElement = document.getElementById('cart-count');
+    if (countElement) countElement.innerText = cart.length;
+}
+
 function addToCart(name, price) {
-    cart.push({ name, price });
+    const existingItem = cart.find(item => item.name === name);
+    if (existingItem) {
+        existingItem.quantity += 1;
+    } else {
+        cart.push({ name, price, quantity: 1 });
+    }
+    saveAndRefresh();
+    alert(name + " added!");
+}
+
+function changeQuantity(index, delta) {
+    cart[index].quantity += delta;
+    if (cart[index].quantity < 1) {
+        if (confirm("Remove item?")) cart.splice(index, 1);
+        else cart[index].quantity = 1;
+    }
+    saveAndRefresh();
+}
+
+function removeFromCart(index) {
+    cart.splice(index, 1);
+    saveAndRefresh();
+}
+
+function saveAndRefresh() {
     localStorage.setItem('cart', JSON.stringify(cart));
     updateCartCount();
-    alert(name + " added to cart!");
+    if (typeof displayCart === "function") displayCart();
 }
 
-// 2. Update Cart Count in Header
-function updateCartCount() {
-    const cartCountElement = document.getElementById('cart-count');
-    if (cartCountElement) {
-        cartCountElement.innerText = cart.length;
-    }
-}
-
-// 3. Process Checkout (Move cart to order history)
 function checkout() {
     if (cart.length === 0) return alert("Cart is empty!");
     
-    const newOrder = {
-        id: "#" + Math.floor(Math.random() * 100000),
-        date: new Date().toLocaleDateString(),
-        items: [...cart],
-        total: cart.reduce((sum, item) => sum + item.price, 0)
-    };
-
+    const orderId = "#" + Math.floor(Math.random() * 10000);
+    const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    
+    const newOrder = { id: orderId, date: new Date().toLocaleDateString(), total: total.toFixed(2) };
+    let orders = JSON.parse(localStorage.getItem('orders')) || [];
     orders.push(newOrder);
     localStorage.setItem('orders', JSON.stringify(orders));
+
+    document.getElementById('order-summary-box').innerHTML = `
+        <p><strong>Order ID:</strong> ${orderId}</p>
+        <p><strong>Total Paid:</strong> $${total.toFixed(2)}</p>
+    `;
+    document.getElementById('success-modal').style.display = 'block';
     
-    // Clear cart after checkout
     cart = [];
     localStorage.setItem('cart', JSON.stringify(cart));
-    window.location.href = 'orders.html'; // Redirect to history
+    updateCartCount();
 }
 
-// Run on page load
 document.addEventListener('DOMContentLoaded', updateCartCount);
